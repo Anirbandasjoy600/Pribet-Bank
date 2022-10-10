@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pribet Bank</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!--Login form Pary-->
+
+    <div id="login-form">
+        <div class="form-title">
+            <h2 class="text-center mb-4">Wellcome To My Pribet Bank</h2>
+        </div>
+        <div class="form-body">
+        <h4>Login</h4>
+        <input id="email" class="form-control" type="text" placeholder="Enter your email address">
+        <br>
+        <input id="passward" class="form-control" type="password" placeholder="Password">
+        <br>
+        <button id="btn" class="btn btn-success">Enter</button>
+        </div>
+    </div>
+
+<!-- second part -->
+
+
+    <div id="Transection-area">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="deposit common">
+                    <h5>Deposit</h5>
+                     <h2>$ <span id="currentamount">00</span></h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="withdraw common">
+                    <h5>Withdraw</h5>
+                     <h2>$ <span id="currentwidthdraw">00</span></h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="Banlance common">
+                    <h5>Balance</h5>
+                     <h2>$ <span id="main-balance">00</span></h2>
+                </div>
+            </div>
+        </div>
+
+    <!--withdraw and deposit part-->
+
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <div class="form-body">
+                    <h4>Deposit</h4>
+                    <input id="newamount" class="form-control" type="text" placeholder="$ amount you want to deposit">
+                    <br>
+                    <button  id="add-amount" class="btn btn-success">Deposit</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-body">
+                    <h4>Withdraw</h4>
+                    <input id="balanceWidthdraw" class="form-control" type="text" placeholder="$ amount you want to withdraw">
+                    <br>
+                    <button id="addwidthdraw" class="btn btn-success">Withdraw</button>
+                </div>
+            </div>
+        </div>
+        <button id="back-btn" class="btn btn-info mt-5 text-center">Login form</button>
+    </div>
+    <script>
+
+
+
+        // Login Button Even Henllar
+       var loginbtn = document.getElementById("btn");
+       loginbtn.addEventListener('click',function(){
+       const login = document.getElementById('login-form');
+       login.style.display = 'none';
+       const transectionArea = document.getElementById('Transection-area');
+       transectionArea.style.display = "block";
+       document.getElementById('email').value ="";
+       document.getElementById('passward').value ="";
+        
+       })
+
+       // Back Button Even Hellar
+
+       var backBtn = document.getElementById('back-btn');
+       backBtn.addEventListener('click',function(){
+        const remove = document.getElementById('Transection-area');
+        remove.style.display = 'none';
+        const back = document.getElementById('login-form');
+        back.style.display = 'block';
+
+       })
+
+       // Deposite Section  
+
+       const addamount = document.getElementById('add-amount');
+       addamount.addEventListener('click',function(){
+        const newbalance = amount('newamount');
+        balacnehendel('currentamount',newbalance);
+
+
+        //main-Balance part
+
+        balacnehendel('main-balance',newbalance);
+        document.getElementById('newamount').value = "";
+       })
+        // Widthdraw Part
+
+        const withdrawbtn = document.getElementById('addwidthdraw');
+        withdrawbtn.addEventListener('click',function(){
+        const newbalances = amount('balanceWidthdraw');
+        balacnehendel('currentwidthdraw',newbalances)
+        balacnehendel('main-balance', -1 *newbalances);
+        document.getElementById('balanceWidthdraw').value = "";
+       })
+
+       // function section
+ 
+        function amount(id) {
+            const newamount = document.getElementById(id).value;
+            const newbalance = parseFloat(newamount);
+            return newbalance;
+                
+        }
+
+       function balacnehendel(id,newbalance) {
+        const currentBalance = document.getElementById(id).innerText;
+        const newBalance = parseFloat(currentBalance);
+        const totalBalnce = newbalance + newBalance;
+        document.getElementById(id).innerText = totalBalnce;
+       }
+    </script>
+</body>
+</html>
